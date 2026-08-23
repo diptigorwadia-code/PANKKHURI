@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pankkhuri — Chaniya Choli &amp; Oxidised Silver Jewellery</title>
+<meta name="description" content="Pankkhuri — handpicked Chaniya Choli and oxidised silver jewellery. Order on WhatsApp, pay by UPI.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --maroon-950:#2A0A13;
+    --maroon-900:#3B0F1C;
+    --maroon-800:#4E1526;
+    --maroon-700:#63203280;
+    --marigold-500:#E8961E;
+    --marigold-300:#F3C267;
+    --silver-300:#D8D8DE;
+    --silver-500:#A9A9B2;
+    --bottle-800:#0F3B33;
+    --cream-100:#F7ECDA;
+    --ink:#180810;
+    --wa-green:#2FAE60;
+    --radius:14px;
+    --shadow-lg:0 20px 50px -20px rgba(0,0,0,.6);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--maroon-950);
+    color:var(--cream-100);
+    font-family:'Poppins',sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;}
+  img{display:block;max-width:100%;}
+
+  /* ---------- Bandhani dot texture (signature motif) ---------- */
+  .dot-divider{
+    height:34px;
+    width:100%;
+    background-image: radial-gradient(circle, var(--marigold-500) 2px, transparent 2.6px);
+    background-size: 26px 26px;
+    background-position: 0 10px;
+    opacity:.55;
+  }
+  .dot-divider.flip{ transform:scaleY(-1); }
+
+  /* ---------- Header / Hero ---------- */
+  header.hero{
+    position:relative;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    overflow:hidden;
+    padding:32px 20px 60px;
+  }
+  .hero-bg{
+    position:absolute; inset:0;
+    z-index:0;
+  }
+  .hero-bg img{
+    position:absolute; inset:0;
+    width:100%; height:100%;
+    object-fit:cover;
+    opacity:0;
+    transition:opacity 1.8s ease-in-out;
+    animation:kenburns 12s ease-in-out infinite alternate;
+  }
+  .hero-bg img.active{opacity:1;}
+  @keyframes kenburns{
+    from{transform:scale(1);}
+    to{transform:scale(1.08);}
+  }
+  .hero-overlay{
+    position:absolute; inset:0; z-index:1;
+    background:
+      radial-gradient(ellipse at 50% 30%, rgba(42,10,19,.35), rgba(24,8,16,.85) 70%),
+      linear-gradient(180deg, rgba(24,8,16,.55) 0%, rgba(24,8,16,.35) 40%, var(--maroon-950) 100%);
+  }
+  .hero-content{position:relative; z-index:2; max-width:780px;}
+  .eyebrow{
+    letter-spacing:.35em;
+    font-size:.72rem;
+    color:var(--marigold-300);
+    text-transform:uppercase;
+    margin-bottom:18px;
+    font-weight:600;
+  }
+  .brand-title{
+    font-family:'Marcellus',serif;
+    font-size:clamp(3rem,9vw,5.6rem);
+    letter-spacing:.04em;
+    margin:0;
+    color:var(--cream-100);
+    text-shadow:0 10px 40px rgba(0,0,0,.5);
+  }
+  .brand-tagline{
+    font-family:'Cormorant Garamond',serif;
+    font-style:italic;
+    font-size:clamp(1.15rem,2.4vw,1.5rem);
+    color:var(--silver-300);
+    margin:14px 0 40px;
+  }
+
+  /* ---------- Tabs (saree-ribbon style) ---------- */
+  .tabs{
+    display:inline-flex;
+    background:rgba(255,255,255,.06);
+    border:1px solid rgba(247,236,218,.25);
+    border-radius:999px;
+    padding:6px;
+    backdrop-filter:blur(6px);
+  }
+  .tab-btn{
+    appearance:none;
+    border:none;
+    cursor:pointer;
+    background:transparent;
+    color:var(--cream-100);
+    font-family:'Poppins',sans-serif;
+    font-weight:600;
+    font-size:.92rem;
+    letter-spacing:.02em;
+    padding:12px 26px;
+    border-radius:999px;
+    transition:background .3s ease, color .3s ease, box-shadow .3s ease;
+  }
+  .tab-btn.active{
+    background:linear-gradient(135deg,var(--marigold-500),var(--marigold-300));
+    color:var(--ink);
+    box-shadow:0 8px 22px -6px rgba(232,150,30,.6);
+  }
+  .tab-btn:not(.active):hover{background:rgba(255,255,255,.08);}
+
+  .scroll-cue{
+    position:relative; z-index:2;
+    margin-top:52px;
+    font-size:.72rem;
+    letter-spacing:.25em;
+    color:var(--silver-300);
+    text-transform:uppercase;
+    opacity:.75;
+  }
+
+  /* ---------- Main sections ---------- */
+  main{position:relative; background:var(--maroon-950);}
+  .section{
+    max-width:1240px;
+    margin:0 auto;
+    padding:70px 24px 40px;
+  }
+  .section-head{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:14px;
+    margin-bottom:34px;
+    border-bottom:1px solid rgba(247,236,218,.12);
+    padding-bottom:20px;
+  }
+  .section-title{
+    font-family:'Marcellus',serif;
+    font-size:clamp(1.7rem,3vw,2.3rem);
+    margin:0;
+    color:var(--cream-100);
+  }
+  .section-sub{
+    font-family:'Cormorant Garamond',serif;
+    font-style:italic;
+    color:var(--marigold-300);
+    font-size:1.15rem;
+    margin:0;
+  }
+
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(255px,1fr));
+    gap:26px;
+  }
+
+  .card{
+    position:relative;
+    background:linear-gradient(180deg,var(--maroon-900),var(--maroon-800));
+    border-radius:var(--radius);
+    overflow:hidden;
+    border:1px solid rgba(247,236,218,.1);
+    box-shadow:var(--shadow-lg);
+    display:flex;
+    flex-direction:column;
+    transition:transform .35s ease, box-shadow .35s ease;
+  }
+  .card:hover{ transform:translateY(-6px); box-shadow:0 26px 60px -18px rgba(0,0,0,.7); }
+
+  .card-img-wrap{
+    position:relative;
+    aspect-ratio:4/5;
+    overflow:hidden;
+    background:var(--maroon-800);
+  }
+  .card-img-wrap img{
+    width:100%; height:100%; object-fit:cover;
+    transition:transform .5s ease;
+  }
+  .card:hover .card-img-wrap img{ transform:scale(1.06); }
+
+  /* mirror-work corner accents */
+  .mirror-dot{
+    position:absolute;
+    width:16px;height:16px;
+    border-radius:50%;
+    background:radial-gradient(circle at 35% 30%, #fff, var(--silver-300) 45%, var(--silver-500) 100%);
+    box-shadow:0 0 0 3px rgba(24,8,16,.5), 0 2px 6px rgba(0,0,0,.4);
+  }
+  .mirror-dot.tl{top:10px; left:10px;}
+  .mirror-dot.tr{top:10px; right:10px;}
+
+  .card-body{
+    padding:18px 18px 20px;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    flex:1;
+  }
+  .card-name{
+    font-family:'Cormorant Garamond',serif;
+    font-size:1.25rem;
+    font-weight:600;
+    color:var(--cream-100);
+    line-height:1.3;
+    margin:0;
+  }
+  .card-price{
+    font-family:'Poppins',sans-serif;
+    font-weight:700;
+    font-size:1.15rem;
+    color:var(--marigold-300);
+    margin:0;
+  }
+  .card-price .mrp{
+    font-weight:400;
+    font-size:.85rem;
+    color:var(--silver-500);
+    text-decoration:line-through;
+    margin-left:8px;
+  }
+  .card-actions{
+    margin-top:auto;
+    display:flex;
+    gap:8px;
+    padding-top:6px;
+  }
+  .btn{
+    flex:1;
+    text-align:center;
+    padding:11px 10px;
+    border-radius:9px;
+    font-size:.82rem;
+    font-weight:600;
+    text-decoration:none;
+    letter-spacing:.01em;
+    border:1px solid transparent;
+    transition:filter .2s ease, transform .2s ease;
+    cursor:pointer;
+  }
+  .btn:active{ transform:scale(.97); }
+  .btn-buy{
+    background:linear-gradient(135deg,var(--marigold-500),var(--marigold-300));
+    color:var(--ink);
+  }
+  .btn-buy:hover{ filter:brightness(1.08); }
+  .btn-wa{
+    background:rgba(47,174,96,.12);
+    color:#7CE0A2;
+    border-color:rgba(47,174,96,.4);
+  }
+  .btn-wa:hover{ background:rgba(47,174,96,.22); }
+
+  /* ---------- About strip ---------- */
+  .about-strip{
+    max-width:1240px;
+    margin:20px auto 0;
+    padding:0 24px 10px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:24px;
+  }
+  .about-card{
+    background:rgba(247,236,218,.04);
+    border:1px solid rgba(247,236,218,.1);
+    border-radius:var(--radius);
+    padding:22px;
+  }
+  .about-card h3{
+    font-family:'Marcellus',serif;
+    font-size:1.05rem;
+    margin:0 0 8px;
+    color:var(--marigold-300);
+  }
+  .about-card p{
+    margin:0;
+    font-size:.88rem;
+    line-height:1.6;
+    color:var(--silver-300);
+  }
+
+  /* ---------- Footer ---------- */
+  footer{
+    background:var(--ink);
+    padding:50px 24px 30px;
+    text-align:center;
+    margin-top:60px;
+  }
+  footer .brand-title{ font-size:1.8rem; margin-bottom:8px; }
+  footer p{ color:var(--silver-500); font-size:.85rem; max-width:520px; margin:0 auto 20px; line-height:1.7; }
+  footer .foot-links{
+    display:flex; gap:20px; justify-content:center; flex-wrap:wrap;
+    font-size:.82rem; margin-bottom:26px;
+  }
+  footer .foot-links a{ color:var(--marigold-300); text-decoration:none; }
+  footer .foot-links a:hover{ text-decoration:underline; }
+  footer .copyright{ font-size:.75rem; color:#6b5a62; }
+
+  /* ---------- Floating WhatsApp button ---------- */
+  .wa-float{
+    position:fixed;
+    bottom:22px; right:22px;
+    z-index:50;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    background:var(--wa-green);
+    color:#fff;
+    text-decoration:none;
+    padding:13px 18px;
+    border-radius:999px;
+    font-weight:600;
+    font-size:.85rem;
+    box-shadow:0 10px 26px -6px rgba(0,0,0,.5);
+    transition:transform .2s ease;
+  }
+  .wa-float:hover{ transform:translateY(-3px); }
+  .wa-float svg{ width:20px; height:20px; flex-shrink:0; }
+
+  @media (max-width:600px){
+    .wa-float span{ display:none; }
+    .wa-float{ padding:14px; }
+    .section{ padding:50px 16px 20px; }
+  }
+
+  [hidden]{ display:none !important; }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-bg" id="heroBg">
+    <!-- 6 rotating background images -->
+    <img src="assets/images/hero/hero-1.jpg" alt="" class="active">
+    <img src="assets/images/hero/hero-2.jpg" alt="">
+    <img src="assets/images/hero/hero-3.jpg" alt="">
+    <img src="assets/images/hero/hero-4.jpg" alt="">
+    <img src="assets/images/hero/hero-5.jpg" alt="">
+    <img src="assets/images/hero/hero-6.jpg" alt="">
+  </div>
+  <div class="hero-overlay"></div>
+
+  <div class="hero-content">
+    <div class="eyebrow">Handpicked · Handcrafted · Ships across India</div>
+    <h1 class="brand-title">Pankkhuri</h1>
+    <p class="brand-tagline">Chaniya Choli &amp; Oxidised Silver Jewellery, curated with love</p>
+
+    <div class="tabs" role="tablist" aria-label="Shop category">
+      <button class="tab-btn active" id="tabBtn-choli" role="tab" aria-selected="true" onclick="showTab('choli')">Chaniya Choli</button>
+      <button class="tab-btn" id="tabBtn-jewellery" role="tab" aria-selected="false" onclick="showTab('jewellery')">Jewellery</button>
+    </div>
+  </div>
+
+  <div class="scroll-cue">Scroll to explore ↓</div>
+</header>
+
+<div class="dot-divider"></div>
+
+<main>
+
+  <!-- ================= CHANIYA CHOLI ================= -->
+  <section class="section" id="panel-choli">
+    <div class="section-head">
+      <div>
+        <h2 class="section-title">Chaniya Choli Collection</h2>
+        <p class="section-sub">Bandhani · Mirror work · Gota patti</p>
+      </div>
+    </div>
+    <div class="grid" id="grid-choli"><!-- injected by JS --></div>
+  </section>
+
+  <!-- ================= JEWELLERY ================= -->
+  <section class="section" id="panel-jewellery" hidden>
+    <div class="section-head">
+      <div>
+        <h2 class="section-title">Oxidised Silver Jewellery</h2>
+        <p class="section-sub">Temple work · Jhumkas · Ghungroo</p>
+      </div>
+    </div>
+    <div class="grid" id="grid-jewellery"><!-- injected by JS --></div>
+  </section>
+
+  <div class="dot-divider flip"></div>
+
+  <div class="about-strip">
+    <div class="about-card">
+      <h3>Order on WhatsApp</h3>
+      <p>Tap "Inquire Now" on any piece — it opens WhatsApp with the item and price pre-filled so you can confirm size, colour and stock instantly.</p>
+    </div>
+    <div class="about-card">
+      <h3>Pay by UPI</h3>
+      <p>Tap "Buy Now" to open your UPI app with the amount pre-filled — pay directly via GPay, PhonePe or Paytm.</p>
+    </div>
+    <div class="about-card">
+      <h3>Made with care</h3>
+      <p>Every chaniya choli and jewellery piece is sourced and quality-checked before it reaches you.</p>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <h2 class="brand-title">Pankkhuri</h2>
+  <p>Bringing you the colours of Gujarat — festive Chaniya Choli and handcrafted oxidised silver jewellery, delivered to your doorstep.</p>
+  <div class="foot-links">
+    <a href="#panel-choli" onclick="showTab('choli')">Chaniya Choli</a>
+    <a href="#panel-jewellery" onclick="showTab('jewellery')">Jewellery</a>
+    <a id="footWaLink" href="#" target="_blank" rel="noopener">WhatsApp Us</a>
+  </div>
+  <p class="copyright">© <span id="year"></span> Pankkhuri. All rights reserved.</p>
+</footer>
+
+<!-- Floating WhatsApp button -->
+<a class="wa-float" id="floatWaLink" href="#" target="_blank" rel="noopener" aria-label="Inquire on WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.29-1.39a9.9 9.9 0 0 0 4.75 1.21h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2m0 1.67c2.24 0 4.35.87 5.94 2.46a8.23 8.23 0 0 1 2.42 5.85c0 4.56-3.71 8.27-8.37 8.27a8.3 8.3 0 0 1-4.21-1.15l-.3-.18-3.14.82.84-3.06-.2-.32a8.2 8.2 0 0 1-1.26-4.4c0-4.56 3.72-8.29 8.28-8.29m-4.7 4.3c-.15 0-.4.06-.61.3-.21.24-.8.78-.8 1.9s.82 2.21.93 2.36c.12.16 1.6 2.52 3.97 3.43 1.97.75 2.37.6 2.8.56.43-.04 1.38-.56 1.57-1.11.2-.54.2-1 .14-1.1-.06-.1-.21-.16-.44-.28-.23-.12-1.38-.68-1.6-.76-.21-.08-.37-.12-.53.12-.15.24-.6.76-.74.91-.14.16-.27.18-.5.06-.23-.12-.98-.36-1.87-1.16-.69-.62-1.16-1.38-1.3-1.62-.13-.23-.01-.36.1-.48.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.53-1.3-.74-1.78-.19-.46-.39-.4-.53-.4Z"/></svg>
+  <span>Inquire Now</span>
+</a>
+
+<script>
+/* ======================================================
+   PANKKHURI CONFIG — edit the values in this block only
+   ====================================================== */
+const CONFIG = {
+  // Dummy WhatsApp number — REPLACE with your real number (country code + number, no + or spaces)
+  whatsappNumber: "919574132176",
+
+  // Dummy UPI ID — REPLACE with your real UPI VPA (e.g. yourname@okaxis / pankkhuri@ybl)
+  upiId: "pankkhuri@upi",
+  upiPayeeName: "Pankkhuri"
+};
+
+/* ---------- Product data ---------- */
+const products = {
+  choli: [
+    { name:"Bandhani Chaniya Choli - Wine Red", price:2799, mrp:3499, img:"assets/images/chaniya-choli/cc-1.jpg" },
+    { name:"Mirror Work Choli Set - Peacock Blue", price:3299, mrp:4199, img:"assets/images/chaniya-choli/cc-2.jpg" },
+    { name:"Gota Patti Chaniya Choli - Marigold", price:2499, mrp:2999, img:"assets/images/chaniya-choli/cc-3.jpg" },
+    { name:"Kutchi Embroidery Set - Emerald", price:3599, mrp:4499, img:"assets/images/chaniya-choli/cc-4.jpg" },
+    { name:"Bandhej Silk Choli - Magenta", price:2999, mrp:3799, img:"assets/images/chaniya-choli/cc-5.jpg" },
+    { name:"Rabari Mirror Ghagra - Maroon", price:3999, mrp:4999, img:"assets/images/chaniya-choli/cc-6.jpg" },
+    { name:"Ajrakh Print Chaniya Choli - Indigo", price:2299, mrp:2899, img:"assets/images/chaniya-choli/cc-7.jpg" },
+    { name:"Zari Border Choli Set - Rani Pink", price:3199, mrp:3999, img:"assets/images/chaniya-choli/cc-8.jpg" },
+    { name:"Foil Mirror Ghagra - Mustard", price:2899, mrp:3599, img:"assets/images/chaniya-choli/cc-9.jpg" },
+    { name:"Bridal Bandhani Set - Deep Red", price:4499, mrp:5999, img:"assets/images/chaniya-choli/cc-10.jpg" },
+  ],
+  jewellery: [
+    { name:"Oxidised Silver Jhumka Earrings", price:449, mrp:699, img:"assets/images/jewellery/jw-1.jpg" },
+    { name:"Temple Coin Necklace Set", price:1199, mrp:1599, img:"assets/images/jewellery/jw-2.jpg" },
+    { name:"Peacock Motif Choker", price:899, mrp:1199, img:"assets/images/jewellery/jw-3.jpg" },
+    { name:"Oxidised Silver Bangles (Pair)", price:549, mrp:799, img:"assets/images/jewellery/jw-4.jpg" },
+    { name:"Ghungroo Anklet Pair", price:399, mrp:599, img:"assets/images/jewellery/jw-5.jpg" },
+    { name:"Kundan Oxidised Maang Tikka", price:349, mrp:499, img:"assets/images/jewellery/jw-6.jpg" },
+    { name:"Layered Oxidised Necklace", price:999, mrp:1399, img:"assets/images/jewellery/jw-7.jpg" },
+    { name:"Silver Oxidised Ring - Adjustable", price:249, mrp:349, img:"assets/images/jewellery/jw-8.jpg" },
+    { name:"Bahubali Style Bajuband", price:749, mrp:999, img:"assets/images/jewellery/jw-9.jpg" },
+    { name:"Oxidised Hasli Neckpiece", price:1099, mrp:1499, img:"assets/images/jewellery/jw-10.jpg" },
+  ]
+};
+
+/* ---------- Helpers ---------- */
+function waLink(item){
+  const msg = `Hi Pankkhuri! I'm interested in "${item.name}" (₹${item.price}). Is it available?`;
+  return `https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(msg)}`;
+}
+function upiLink(item){
+  const note = `Pankkhuri - ${item.name}`;
+  return `upi://pay?pa=${encodeURIComponent(CONFIG.upiId)}&pn=${encodeURIComponent(CONFIG.upiPayeeName)}&am=${item.price}&cu=INR&tn=${encodeURIComponent(note)}`;
+}
+
+function renderGrid(containerId, items){
+  const el = document.getElementById(containerId);
+  el.innerHTML = items.map(item => `
+    <article class="card">
+      <div class="card-img-wrap">
+        <img src="${item.img}" alt="${item.name}" loading="lazy">
+        <span class="mirror-dot tl"></span>
+        <span class="mirror-dot tr"></span>
+      </div>
+      <div class="card-body">
+        <h3 class="card-name">${item.name}</h3>
+        <p class="card-price">₹${item.price}<span class="mrp">₹${item.mrp}</span></p>
+        <div class="card-actions">
+          <a class="btn btn-wa" href="${waLink(item)}" target="_blank" rel="noopener">Inquire Now</a>
+          <a class="btn btn-buy" href="${upiLink(item)}">Buy Now</a>
+        </div>
+      </div>
+    </article>
+  `).join("");
+}
+renderGrid("grid-choli", products.choli);
+renderGrid("grid-jewellery", products.jewellery);
+
+/* ---------- Tabs ---------- */
+function showTab(tab){
+  const isCholi = tab === "choli";
+  document.getElementById("panel-choli").hidden = !isCholi;
+  document.getElementById("panel-jewellery").hidden = isCholi;
+  document.getElementById("tabBtn-choli").classList.toggle("active", isCholi);
+  document.getElementById("tabBtn-jewellery").classList.toggle("active", !isCholi);
+  document.getElementById("tabBtn-choli").setAttribute("aria-selected", isCholi);
+  document.getElementById("tabBtn-jewellery").setAttribute("aria-selected", !isCholi);
+}
+
+/* ---------- Hero background slideshow ---------- */
+(function heroSlideshow(){
+  const imgs = document.querySelectorAll("#heroBg img");
+  let i = 0;
+  const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (prefersReduced || imgs.length < 2) return;
+  setInterval(() => {
+    imgs[i].classList.remove("active");
+    i = (i + 1) % imgs.length;
+    imgs[i].classList.add("active");
+  }, 5000);
+})();
+
+/* ---------- Footer / floating WhatsApp links ---------- */
+const generalWaLink = `https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent("Hi Pankkhuri! I'd like to know more about your collection.")}`;
+document.getElementById("footWaLink").href = generalWaLink;
+document.getElementById("floatWaLink").href = generalWaLink;
+
+document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
