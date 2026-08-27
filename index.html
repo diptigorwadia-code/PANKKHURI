@@ -197,17 +197,77 @@
   }
   .card:hover{ transform:translateY(-6px); box-shadow:0 26px 60px -18px rgba(0,0,0,.7); }
 
+  /* ---------- Product Image Slider & Touch Swipe ---------- */
   .card-img-wrap{
     position:relative;
     aspect-ratio:4/5;
     overflow:hidden;
     background:var(--maroon-800);
+    touch-action: pan-y;
   }
-  .card-img-wrap img{
-    width:100%; height:100%; object-fit:cover;
-    transition:transform .5s ease;
+
+  .slider-track{
+    display:flex;
+    width:300%;
+    height:100%;
+    transition:transform 0.4s ease-in-out;
   }
-  .card:hover .card-img-wrap img{ transform:scale(1.06); }
+
+  .slider-track img{
+    width:33.333%;
+    height:100%;
+    object-fit:cover;
+    flex-shrink:0;
+  }
+
+  .slider-btn{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    background:rgba(24,8,16,0.55);
+    color:var(--cream-100);
+    border:none;
+    width:30px;
+    height:30px;
+    border-radius:50%;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:16px;
+    z-index:3;
+    opacity:0;
+    transition:opacity 0.2s ease, background 0.2s ease;
+  }
+
+  .card-img-wrap:hover .slider-btn{ opacity:1; }
+  .slider-btn:hover{ background:var(--marigold-500); color:var(--ink); }
+  .slider-btn.prev{ left:8px; }
+  .slider-btn.next{ right:8px; }
+
+  .slider-dots{
+    position:absolute;
+    bottom:10px;
+    left:50%;
+    transform:translateX(-50%);
+    display:flex;
+    gap:6px;
+    z-index:3;
+  }
+
+  .slider-dot{
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:rgba(255,255,255,0.4);
+    cursor:pointer;
+    transition:background 0.3s ease, transform 0.3s ease;
+  }
+
+  .slider-dot.active{
+    background:var(--marigold-300);
+    transform:scale(1.25);
+  }
 
   /* mirror-work corner accents */
   .mirror-dot{
@@ -216,6 +276,8 @@
     border-radius:50%;
     background:radial-gradient(circle at 35% 30%, #fff, var(--silver-300) 45%, var(--silver-500) 100%);
     box-shadow:0 0 0 3px rgba(24,8,16,.5), 0 2px 6px rgba(0,0,0,.4);
+    z-index:4;
+    pointer-events:none;
   }
   .mirror-dot.tl{top:10px; left:10px;}
   .mirror-dot.tr{top:10px; right:10px;}
@@ -351,6 +413,7 @@
     .wa-float span{ display:none; }
     .wa-float{ padding:14px; }
     .section{ padding:50px 16px 20px; }
+    .slider-btn{ opacity:1; background:rgba(24,8,16,0.7); }
   }
 
   [hidden]{ display:none !important; }
@@ -459,31 +522,31 @@ const CONFIG = {
   upiPayeeName: "Pankkhuri"
 };
 
-/* ---------- Product data ---------- */
+/* ---------- Product data with 3 images each ---------- */
 const products = {
   choli: [
-    { name:"Bandhani Chaniya Choli - Wine Red", price:2799, mrp:3499, img:"assets/images/chaniya-choli/cc-1.jpg" },
-    { name:"Mirror Work Choli Set - Peacock Blue", price:3299, mrp:4199, img:"assets/images/chaniya-choli/cc-2.jpg" },
-    { name:"Gota Patti Chaniya Choli - Marigold", price:2499, mrp:2999, img:"assets/images/chaniya-choli/cc-3.jpg" },
-    { name:"Kutchi Embroidery Set - Emerald", price:3599, mrp:4499, img:"assets/images/chaniya-choli/cc-4.jpg" },
-    { name:"Bandhej Silk Choli - Magenta", price:2999, mrp:3799, img:"assets/images/chaniya-choli/cc-5.jpg" },
-    { name:"Rabari Mirror Ghagra - Maroon", price:3999, mrp:4999, img:"assets/images/chaniya-choli/cc-6.jpg" },
-    { name:"Ajrakh Print Chaniya Choli - Indigo", price:2299, mrp:2899, img:"assets/images/chaniya-choli/cc-7.jpg" },
-    { name:"Zari Border Choli Set - Rani Pink", price:3199, mrp:3999, img:"assets/images/chaniya-choli/cc-8.jpg" },
-    { name:"Foil Mirror Ghagra - Mustard", price:2899, mrp:3599, img:"assets/images/chaniya-choli/cc-9.jpg" },
-    { name:"Bridal Bandhani Set - Deep Red", price:4499, mrp:5999, img:"assets/images/chaniya-choli/cc-10.jpg" },
+    { name:"Bandhani Chaniya Choli - Wine Red", price:2799, mrp:3499, images:["assets/images/chaniya-choli/cc-1.jpg", "assets/images/chaniya-choli/cc-1-2.jpg", "assets/images/chaniya-choli/cc-1-3.jpg"] },
+    { name:"Mirror Work Choli Set - Peacock Blue", price:3299, mrp:4199, images:["assets/images/chaniya-choli/cc-2.jpg", "assets/images/chaniya-choli/cc-2-2.jpg", "assets/images/chaniya-choli/cc-2-3.jpg"] },
+    { name:"Gota Patti Chaniya Choli - Marigold", price:2499, mrp:2999, images:["assets/images/chaniya-choli/cc-3.jpg", "assets/images/chaniya-choli/cc-3-2.jpg", "assets/images/chaniya-choli/cc-3-3.jpg"] },
+    { name:"Kutchi Embroidery Set - Emerald", price:3599, mrp:4499, images:["assets/images/chaniya-choli/cc-4.jpg", "assets/images/chaniya-choli/cc-4-2.jpg", "assets/images/chaniya-choli/cc-4-3.jpg"] },
+    { name:"Bandhej Silk Choli - Magenta", price:2999, mrp:3799, images:["assets/images/chaniya-choli/cc-5.jpg", "assets/images/chaniya-choli/cc-5-2.jpg", "assets/images/chaniya-choli/cc-5-3.jpg"] },
+    { name:"Rabari Mirror Ghagra - Maroon", price:3999, mrp:4999, images:["assets/images/chaniya-choli/cc-6.jpg", "assets/images/chaniya-choli/cc-6-2.jpg", "assets/images/chaniya-choli/cc-6-3.jpg"] },
+    { name:"Ajrakh Print Chaniya Choli - Indigo", price:2299, mrp:2899, images:["assets/images/chaniya-choli/cc-7.jpg", "assets/images/chaniya-choli/cc-7-2.jpg", "assets/images/chaniya-choli/cc-7-3.jpg"] },
+    { name:"Zari Border Choli Set - Rani Pink", price:3199, mrp:3999, images:["assets/images/chaniya-choli/cc-8.jpg", "assets/images/chaniya-choli/cc-8-2.jpg", "assets/images/chaniya-choli/cc-8-3.jpg"] },
+    { name:"Foil Mirror Ghagra - Mustard", price:2899, mrp:3599, images:["assets/images/chaniya-choli/cc-9.jpg", "assets/images/chaniya-choli/cc-9-2.jpg", "assets/images/chaniya-choli/cc-9-3.jpg"] },
+    { name:"Bridal Bandhani Set - Deep Red", price:4499, mrp:5999, images:["assets/images/chaniya-choli/cc-10.jpg", "assets/images/chaniya-choli/cc-10-2.jpg", "assets/images/chaniya-choli/cc-10-3.jpg"] },
   ],
   jewellery: [
-    { name:"Oxidised Silver Jhumka Earrings", price:449, mrp:699, img:"assets/images/jewellery/jw-1.jpg" },
-    { name:"Temple Coin Necklace Set", price:1199, mrp:1599, img:"assets/images/jewellery/jw-2.jpg" },
-    { name:"Peacock Motif Choker", price:899, mrp:1199, img:"assets/images/jewellery/jw-3.jpg" },
-    { name:"Oxidised Silver Bangles (Pair)", price:549, mrp:799, img:"assets/images/jewellery/jw-4.jpg" },
-    { name:"Ghungroo Anklet Pair", price:399, mrp:599, img:"assets/images/jewellery/jw-5.jpg" },
-    { name:"Kundan Oxidised Maang Tikka", price:349, mrp:499, img:"assets/images/jewellery/jw-6.jpg" },
-    { name:"Layered Oxidised Necklace", price:999, mrp:1399, img:"assets/images/jewellery/jw-7.jpg" },
-    { name:"Silver Oxidised Ring - Adjustable", price:249, mrp:349, img:"assets/images/jewellery/jw-8.jpg" },
-    { name:"Bahubali Style Bajuband", price:749, mrp:999, img:"assets/images/jewellery/jw-9.jpg" },
-    { name:"Oxidised Hasli Neckpiece", price:1099, mrp:1499, img:"assets/images/jewellery/jw-10.jpg" },
+    { name:"Oxidised Silver Jhumka Earrings", price:449, mrp:699, images:["assets/images/jewellery/jw-1.jpg", "assets/images/jewellery/jw-1-2.jpg", "assets/images/jewellery/jw-1-3.jpg"] },
+    { name:"Temple Coin Necklace Set", price:1199, mrp:1599, images:["assets/images/jewellery/jw-2.jpg", "assets/images/jewellery/jw-2-2.jpg", "assets/images/jewellery/jw-2-3.jpg"] },
+    { name:"Peacock Motif Choker", price:899, mrp:1199, images:["assets/images/jewellery/jw-3.jpg", "assets/images/jewellery/jw-3-2.jpg", "assets/images/jewellery/jw-3-3.jpg"] },
+    { name:"Oxidised Silver Bangles (Pair)", price:549, mrp:799, images:["assets/images/jewellery/jw-4.jpg", "assets/images/jewellery/jw-4-2.jpg", "assets/images/jewellery/jw-4-3.jpg"] },
+    { name:"Ghungroo Anklet Pair", price:399, mrp:599, images:["assets/images/jewellery/jw-5.jpg", "assets/images/jewellery/jw-5-2.jpg", "assets/images/jewellery/jw-5-3.jpg"] },
+    { name:"Kundan Oxidised Maang Tikka", price:349, mrp:499, images:["assets/images/jewellery/jw-6.jpg", "assets/images/jewellery/jw-6-2.jpg", "assets/images/jewellery/jw-6-3.jpg"] },
+    { name:"Layered Oxidised Necklace", price:999, mrp:1399, images:["assets/images/jewellery/jw-7.jpg", "assets/images/jewellery/jw-7-2.jpg", "assets/images/jewellery/jw-7-3.jpg"] },
+    { name:"Silver Oxidised Ring - Adjustable", price:249, mrp:349, images:["assets/images/jewellery/jw-8.jpg", "assets/images/jewellery/jw-8-2.jpg", "assets/images/jewellery/jw-8-3.jpg"] },
+    { name:"Bahubali Style Bajuband", price:749, mrp:999, images:["assets/images/jewellery/jw-9.jpg", "assets/images/jewellery/jw-9-2.jpg", "assets/images/jewellery/jw-9-3.jpg"] },
+    { name:"Oxidised Hasli Neckpiece", price:1099, mrp:1499, images:["assets/images/jewellery/jw-10.jpg", "assets/images/jewellery/jw-10-2.jpg", "assets/images/jewellery/jw-10-3.jpg"] },
   ]
 };
 
@@ -499,10 +562,20 @@ function upiLink(item){
 
 function renderGrid(containerId, items){
   const el = document.getElementById(containerId);
-  el.innerHTML = items.map(item => `
+  el.innerHTML = items.map((item, pIndex) => `
     <article class="card">
-      <div class="card-img-wrap">
-        <img src="${item.img}" alt="${item.name}" loading="lazy">
+      <div class="card-img-wrap" id="slider-wrap-${containerId}-${pIndex}">
+        <div class="slider-track" id="track-${containerId}-${pIndex}">
+          ${item.images.map(img => `<img src="${img}" alt="${item.name}" loading="lazy">`).join("")}
+        </div>
+        
+        <button class="slider-btn prev" aria-label="Previous image" onclick="moveSlide('${containerId}', ${pIndex}, -1)">❮</button>
+        <button class="slider-btn next" aria-label="Next image" onclick="moveSlide('${containerId}', ${pIndex}, 1)">❯</button>
+
+        <div class="slider-dots" id="dots-${containerId}-${pIndex}">
+          ${item.images.map((_, i) => `<span class="slider-dot ${i === 0 ? 'active' : ''}" onclick="goToSlide('${containerId}', ${pIndex}, ${i})"></span>`).join("")}
+        </div>
+
         <span class="mirror-dot tl"></span>
         <span class="mirror-dot tr"></span>
       </div>
@@ -516,7 +589,62 @@ function renderGrid(containerId, items){
       </div>
     </article>
   `).join("");
+
+  // Attach touch swipe handlers for mobile
+  items.forEach((_, pIndex) => {
+    const wrap = document.getElementById(`slider-wrap-${containerId}-${pIndex}`);
+    let startX = 0;
+    let endX = 0;
+
+    wrap.addEventListener('touchstart', e => {
+      startX = e.touches[0].clientX;
+    }, { passive: true });
+
+    wrap.addEventListener('touchend', e => {
+      endX = e.changedTouches[0].clientX;
+      if (startX - endX > 40) {
+        moveSlide(containerId, pIndex, 1);
+      } else if (endX - startX > 40) {
+        moveSlide(containerId, pIndex, -1);
+      }
+    }, { passive: true });
+  });
 }
+
+/* ---------- Slider Control Logic ---------- */
+const slideStates = {};
+
+function updateSlider(containerId, pIndex, newIndex){
+  const key = `${containerId}-${pIndex}`;
+  const total = 3;
+  
+  if (newIndex < 0) newIndex = total - 1;
+  if (newIndex >= total) newIndex = 0;
+
+  slideStates[key] = newIndex;
+
+  const track = document.getElementById(`track-${key}`);
+  const dots = document.querySelectorAll(`#dots-${key} .slider-dot`);
+
+  if(track){
+    track.style.transform = `translateX(-${(newIndex * 100) / total}%)`;
+  }
+  
+  dots.forEach((dot, i) => {
+    dot.classList.toggle('active', i === newIndex);
+  });
+}
+
+function moveSlide(containerId, pIndex, direction){
+  const key = `${containerId}-${pIndex}`;
+  const currentIndex = slideStates[key] || 0;
+  updateSlider(containerId, pIndex, currentIndex + direction);
+}
+
+function goToSlide(containerId, pIndex, slideIndex){
+  updateSlider(containerId, pIndex, slideIndex);
+}
+
 renderGrid("grid-choli", products.choli);
 renderGrid("grid-jewellery", products.jewellery);
 
